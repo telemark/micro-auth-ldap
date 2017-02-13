@@ -12,14 +12,15 @@ const saveSession = require('./lib/save-session')
 module.exports = async (request, response) => {
   const {pathname, query} = await parse(request.url, true)
   if (pathname === '/auth') {
-    const data = request.method === 'POST' ? await bodyParser(request) : parse(request.url, true).query
+    const data = request.method === 'POST' ? await bodyParser(request) : query
     send(response, 200, data)
   } else if (pathname === '/lookup') {
-    const data = request.method === 'POST' ? await json(request) : parse(request.url, true).query
+    const data = request.method === 'POST' ? await json(request) : query
     const result = await lookupUser(data)
     const session = await saveSession(result)
     send(response, 200, session)
   } else if (pathname === '/login') {
+    const data = request.method === 'POST' ? await json(request) : query
     send(response, 200, loginPage(data))
   } else {
     const readme = readFileSync('./README.md', 'utf-8')
