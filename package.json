@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "axios": "0.15.3",
-    "jsonwebtoken": "7.2.1",
+    "jsonwebtoken": "7.3.0",
     "ldap-get-user": "1.0.7",
     "ldapauth-fork": "3.0.0",
     "ldapjs": "1.0.1",
