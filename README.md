@@ -2,6 +2,8 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
 # micro-auth-ldap
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/telemark/micro-auth-ldap.svg)](https://greenkeeper.io/)
 ldap auth microservice
 
 ## License
