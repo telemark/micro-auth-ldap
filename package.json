@@ -21,7 +21,7 @@
     "standard-fix": "standard --fix",
     "start": "micro -p 8080",
     "dev": "micro",
-    "now-deploy": "npm test && now --npm alias"
+    "now-deploy": "npm test && now --npm --alias"
   },
   "keywords": [
     "microservice",
