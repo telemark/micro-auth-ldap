@@ -19,7 +19,7 @@ module.exports = async (request, response) => {
     const session = await saveSession(result)
     const jwt = generateJwt(Object.assign({sessionKey: session}, result))
     const url = `${data.redirectUrl}?jwt=${jwt}`
-    response.writeHead(301,  { Location: url })
+    response.writeHead(301, { Location: url })
     response.end()
   } else if (pathname === '/lookup') {
     const data = request.method === 'POST' ? await json(request) : query
@@ -27,7 +27,7 @@ module.exports = async (request, response) => {
     const session = await saveSession(result)
     const jwt = generateJwt(Object.assign({sessionKey: session}, result))
     const url = `${data.redirectUrl}?jwt=${jwt}`
-    response.writeHead(301,  { Location: url })
+    response.writeHead(301, { Location: url })
     response.end()
   } else if (pathname === '/login') {
     const data = request.method === 'POST' ? await json(request) : query
