@@ -21,7 +21,7 @@
     "standard-fix": "standard --fix",
     "start": "micro -p 8080",
     "dev": "micro",
-    "now-deploy": "npm test && now --npm --alias"
+    "now-deploy": "npm test && now --npm alias"
   },
   "keywords": [
     "microservice",
@@ -30,13 +30,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/zrrrzzt/micro-echo.git"
+    "url": "https://github.com/telemark/micro-echo.git"
   },
   "bugs": {
-    "url": "https://github.com/zrrrzzt/micro-echo/issues"
+    "url": "https://github.com/telemark/micro-echo/issues"
   },
   "now": {
-    "aliases": [
+    "alias": [
       "ldap.auth.mikrotjeneste.win"
     ],
     "env": {
