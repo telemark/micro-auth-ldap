@@ -21,7 +21,7 @@
     "standard-fix": "standard --fix",
     "start": "micro -p 8080",
     "dev": "micro",
-    "now-deploy": "npm test && now --npm --alias"
+    "now-deploy": "npm test && now --npm alias"
   },
   "keywords": [
     "microservice",
@@ -54,7 +54,6 @@
     "jsonwebtoken": "7.3.0",
     "ldap-get-user": "1.0.7",
     "ldapauth-fork": "3.0.0",
-    "ldapjs": "1.0.1",
     "marked": "0.3.6",
     "micro": "7.0.6",
     "simple-encryptor": "1.1.0",
