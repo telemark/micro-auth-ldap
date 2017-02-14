@@ -21,20 +21,20 @@ LDAP_SEARCH_FILTER=(uid={{username}})
 
 ## API
 
-### /login?redirectUrl=<url for redirect>
+### GET ```/login?redirectUrl=<url for redirect>```
 
 - returns loginform
-- successful login redirects to redirectUrl?jwt=<jwt>
+- successful login redirects to ```redirectUrl?jwt=<jwt>```
 
-### /auth
+### POST ```/auth```
 
 -post username, password and redirectUrl
-- successful auth redirects to redirectUrl?jwt=<jwt>
+- successful auth redirects to ```redirectUrl?jwt=<jwt>```
 
-### /lookup
+### GET ```/?jwt=<jwt>```
 
--post user and redirectUrl
-- successful lookup redirects to redirectUrl?jwt=<jwt>
+- jwt needs userName and redirectUrl
+- successful lookup of user redirects to ```redirectUrl?jwt=<jwt>```
 
 ## License
 
