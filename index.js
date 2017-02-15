@@ -20,7 +20,7 @@ module.exports = async (request, response) => {
     const result = await loginUser(data)
     const session = await saveSession(result)
     const jwt = generateJwt(Object.assign({sessionKey: session}, result))
-    const url = `${data.redirectUrl}?jwt=${jwt}`
+    const url = `${data.origin}?jwt=${jwt}`
     response.writeHead(301, { Location: url })
     response.end()
   } else if (query.jwt) {
@@ -32,14 +32,18 @@ module.exports = async (request, response) => {
         const result = await lookupUser(data)
         const session = await saveSession(result)
         const jwt = generateJwt(Object.assign({sessionKey: session}, result))
-        const url = `${data.redirectUrl}?jwt=${jwt}`
+        const url = `${data.origin}?jwt=${jwt}`
         response.writeHead(301, { Location: url })
         response.end()
       }
     })
   } else if (pathname === '/login') {
     const data = request.method === 'POST' ? await json(request) : query
-    send(response, 200, loginPage(data))
+    if (data.origin) {
+      send(response, 200, loginPage(data))
+    } else {
+      send(response, 500, {error: 'missing required param: origin'})
+    }
   } else {
     const readme = readFileSync('./README.md', 'utf-8')
     const html = marked(readme)

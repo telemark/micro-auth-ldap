@@ -1,7 +1,7 @@
 {
   "name": "micro-auth-ldap",
   "description": "echo microservice",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "author": {
     "name": "Geir Gåsodden",
@@ -21,7 +21,7 @@
     "standard-fix": "standard --fix",
     "start": "micro -p 8080",
     "dev": "micro",
-    "now-deploy": "npm test && now --npm alias"
+    "now-deploy": "npm test && now --npm && now alias"
   },
   "keywords": [
     "microservice",
@@ -30,10 +30,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/telemark/micro-echo.git"
+    "url": "https://github.com/telemark/micro-auth-ldap.git"
   },
   "bugs": {
-    "url": "https://github.com/telemark/micro-echo/issues"
+    "url": "https://github.com/telemark/micro-auth-ldap/issues"
   },
   "now": {
     "alias": [
