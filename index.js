@@ -40,11 +40,13 @@ module.exports = async (request, response) => {
   } else if (pathname === '/login') {
     const data = request.method === 'POST' ? await json(request) : query
     if (data.origin) {
+      response.setHeader('Content-Type', 'text/html')
       send(response, 200, loginPage(data))
     } else {
       send(response, 500, {error: 'missing required param: origin'})
     }
   } else {
+    response.setHeader('Content-Type', 'text/html')
     const readme = readFileSync('./README.md', 'utf-8')
     const html = marked(readme)
     send(response, 200, html)
