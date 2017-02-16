@@ -21,7 +21,7 @@ module.exports = async (request, response) => {
     const session = await saveSession(result)
     const jwt = generateJwt(Object.assign({sessionKey: session}, result))
     const url = `${data.origin}?jwt=${jwt}`
-    response.writeHead(301, { Location: url })
+    response.writeHead(302, { Location: url })
     response.end()
   } else if (query.jwt) {
     const receivedToken = query.jwt
@@ -33,7 +33,7 @@ module.exports = async (request, response) => {
         const session = await saveSession(result)
         const jwt = generateJwt(Object.assign({sessionKey: session}, result))
         const url = `${data.origin}?jwt=${jwt}`
-        response.writeHead(301, { Location: url })
+        response.writeHead(302, { Location: url })
         response.end()
       }
     })
