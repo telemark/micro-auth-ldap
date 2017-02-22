@@ -52,7 +52,7 @@
   "dependencies": {
     "axios": "0.15.3",
     "jsonwebtoken": "7.3.0",
-    "ldap-get-user": "1.0.7",
+    "ldap-get-user": "1.0.9",
     "ldapauth-fork": "3.0.0",
     "marked": "0.3.6",
     "micro": "7.0.6",
