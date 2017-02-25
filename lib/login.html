@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- load MUI -->
+    <link href="https://cdn.muicss.com/mui-0.9.9/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.muicss.com/mui-0.9.9/js/mui.min.js"></script>
+    <title>Pålogging</title>
+</head>
+<body>
+<div class="wrapper">
+    <div class="mui-panel mui-text-center login">
+        <form action="/auth" method="POST" enctype="application/x-www-form-urlencoded" class="mui-form">
+            <input type="hidden" name="origin" value="{{origin}}"/>
+            <img src="https://www.telemark.no/bundles/tfktelemark/images/logo/logo.svg" alt="Telemark fylkeskommune logo">
+            <div class="mui-textfield">
+            <input type="text" name="username" required autofocus>
+                <label>Brukernavn</label>
+            </div>
+            <div class="mui-textfield">
+            <input type="password" name="password" required>
+                <label>Passord</label>
+            </div>
+            <button type="submit" class="mui-btn mui-btn--raised">Logg inn</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: "Georgia", "Times", "Times New Roman", serif;
+        background: #ffd520;
+        color: #000;
+    }
+    button.mui-btn {
+        background: #6ac4ae;
+        width: 100%;
+        text-align: center;
+    }
+    .wrapper {
+        margin-top: 4em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .login {
+        min-width: 480px;
+    }
+</style>
+</body>
+</html>
