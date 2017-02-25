@@ -30,14 +30,19 @@
 
 <style>
     body {
-        font-family: "Georgia", "Times", "Times New Roman", serif;
+        font-family: "Georgia", "Times", "Times New Roman", serif !important;
         background: #ffd520;
         color: #000;
     }
     button.mui-btn {
         background: #6ac4ae;
+        color: white;
         width: 100%;
         text-align: center;
+    }
+    button.mui-btn:hover {
+        background: #ffd520;
+        color: black;
     }
     .wrapper {
         margin-top: 4em;
@@ -47,7 +52,14 @@
         justify-content: center;
     }
     .login {
-        min-width: 480px;
+        width: 350px;
+    }
+
+    .mui-textfield>input:focus, .mui-textfield>textarea:focus {
+        border-color: #6ac4ae;
+    }
+    .mui-textfield>input:focus~label, .mui-textfield>textarea:focus~label {
+        color: #6ac4ae;
     }
 </style>
 </body>
