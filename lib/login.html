@@ -12,13 +12,11 @@
 </head>
 <body>
 <div class="wrapper">
-  <div class="logo">
-    <img src="https://www.telemark.no/bundles/tfktelemark/images/logo/logo.svg" alt="Telemark fylkeskommune logo">
-  </div>
     <div class="mui-panel mui-text-center login">
         <form action="/auth" method="POST" enctype="application/x-www-form-urlencoded" class="mui-form">
             <input type="hidden" name="origin" value="{{origin}}"/>
             <input type="hidden" name="nextPath" value="{{nextPath}}"/>
+            <img src="https://www.telemark.no/bundles/tfktelemark/images/logo/logo.svg" alt="Telemark fylkeskommune logo">
             <h5>Logg inn</h5>
             <p class="desc">Telemark fylkeskommune</p>
             <div class="mui-textfield">
@@ -64,9 +62,6 @@
     }
     .login {
         width: 350px;
-    }
-    .logo {
-      padding-bottom: 10px;
     }
     .desc {
       color: #757575;
