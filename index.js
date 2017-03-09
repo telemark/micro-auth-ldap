@@ -26,7 +26,8 @@ module.exports = async (request, response) => {
       response.writeHead(302, { Location: url })
       response.end()
     } catch (error) {
-      const errorMessage = error.message || 'Unknown error'
+      console.log(error)
+      const errorMessage = typeof error === 'string' ? error : error.message || 'Unknown error'
       response.writeHead(302, { Location: `/login?origin=${data.origin}&nextPath=${query.nextPath || ''}&error=${errorMessage}` })
       response.end()
     }
