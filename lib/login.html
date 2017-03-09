@@ -14,6 +14,7 @@
     <div class="mui-panel mui-text-center login">
         <form action="/auth" method="POST" enctype="application/x-www-form-urlencoded" class="mui-form">
             <input type="hidden" name="origin" value="{{origin}}"/>
+            <input type="hidden" name="nextPath" value="{{nextPath}}"/>
             <img src="https://www.telemark.no/bundles/tfktelemark/images/logo/logo.svg" alt="Telemark fylkeskommune logo">
             <div class="mui-textfield">
             <input type="text" name="username" required autofocus>

@@ -18,6 +18,7 @@ module.exports = async (request, response) => {
   if (pathname === '/auth') {
     const data = request.method === 'POST' ? await bodyParser(request) : query
     const result = await loginUser(data)
+    result.nextPath = query.nextPath || ''
     const session = await saveSession(result)
     const jwt = generateJwt(Object.assign({sessionKey: session}, result))
     const url = `${data.origin}?jwt=${jwt}`
@@ -30,6 +31,7 @@ module.exports = async (request, response) => {
         send(response, 500, error)
       } else {
         const result = await lookupUser(data)
+        result.nextPath = query.nextPath || ''
         const session = await saveSession(result)
         const jwt = generateJwt(Object.assign({sessionKey: session}, result))
         const url = `${data.origin}?jwt=${jwt}`
