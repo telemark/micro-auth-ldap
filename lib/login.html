@@ -16,6 +16,7 @@
             <input type="hidden" name="origin" value="{{origin}}"/>
             <input type="hidden" name="nextPath" value="{{nextPath}}"/>
             <img src="https://www.telemark.no/bundles/tfktelemark/images/logo/logo.svg" alt="Telemark fylkeskommune logo">
+            <span class="error">{{error}}</span>
             <div class="mui-textfield">
             <input type="text" name="username" required autofocus>
                 <label>Brukernavn</label>
@@ -61,6 +62,9 @@
     }
     .mui-textfield>input:focus~label, .mui-textfield>textarea:focus~label {
         color: #6ac4ae;
+    }
+    .error {
+      color: red
     }
 </style>
 </body>
