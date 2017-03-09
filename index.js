@@ -17,13 +17,17 @@ module.exports = async (request, response) => {
   const {pathname, query} = await parse(request.url, true)
   if (pathname === '/auth') {
     const data = request.method === 'POST' ? await bodyParser(request) : query
-    const result = await loginUser(data)
-    result.nextPath = query.nextPath || ''
-    const session = await saveSession(result)
-    const jwt = generateJwt(Object.assign({sessionKey: session}, result))
-    const url = `${data.origin}?jwt=${jwt}`
-    response.writeHead(302, { Location: url })
-    response.end()
+    try {
+      const result = await loginUser(data)
+      result.nextPath = query.nextPath || ''
+      const session = await saveSession(result)
+      const jwt = generateJwt(Object.assign({sessionKey: session}, result))
+      const url = `${data.origin}?jwt=${jwt}`
+      response.writeHead(302, { Location: url })
+      response.end()
+    } catch (error) {
+      response.writeHead(302, { Location: `/login?origin=${data.origin}&nextPath=${query.nextPath || ''}` })
+    }
   } else if (query.jwt) {
     const receivedToken = query.jwt
     jwt.verify(receivedToken, config.JWT_SECRET, async (error, data) => {
