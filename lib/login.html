@@ -17,7 +17,8 @@
             <input type="hidden" name="origin" value="{{origin}}"/>
             <input type="hidden" name="nextPath" value="{{nextPath}}"/>
             <img src="https://www.telemark.no/bundles/tfktelemark/images/logo/logo.svg" alt="Telemark fylkeskommune logo">
-            <span class="error">{{error}}</span>
+            <h5>Logg inn</h5>
+            <p class="desc">Telemark fylkeskommune</p>
             <div class="mui-textfield">
             <input type="text" name="username" required autofocus>
                 <label>Brukernavn</label>
@@ -26,6 +27,7 @@
             <input type="password" name="password" required>
                 <label>Passord</label>
             </div>
+            <span class="error">{{error}}</span>
             <button type="submit" class="mui-btn mui-btn--raised">Logg inn</button>
         </form>
     </div>
@@ -47,6 +49,10 @@
         background: #ffd520;
         color: black;
     }
+    h5 {
+      font-size: 2.4rem;
+      font-weight: 400;
+    }
     .wrapper {
         margin-top: 4em;
         display: flex;
@@ -57,7 +63,10 @@
     .login {
         width: 350px;
     }
-
+    .desc {
+      color: #757575;
+      padding-bottom: 15px;
+    }
     .mui-textfield>input:focus, .mui-textfield>textarea:focus {
         border-color: #6ac4ae;
     }
