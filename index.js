@@ -28,6 +28,7 @@ module.exports = async (request, response) => {
     } catch (error) {
       const errorMessage = error.message || 'Unknown error'
       response.writeHead(302, { Location: `/login?origin=${data.origin}&nextPath=${query.nextPath || ''}&error=${errorMessage}` })
+      response.end()
     }
   } else if (query.jwt) {
     const receivedToken = query.jwt
