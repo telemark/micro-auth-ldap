@@ -28,8 +28,8 @@ module.exports = async (request, response) => {
     } catch (error) {
       console.log(error)
       const errorMessage = typeof error === 'string' ? error : error.message || 'Unknown error'
-      const url = `/login?origin=${data.origin}&nextPath=${query.nextPath || ''}&error="${encodeURIComponent(errorMessage)}"`
-      console.log(url)
+      const em = /80090308/.test(errorMessage) ? 'Ugyldig brukernavn eller passord' : encodeURIComponent(errorMessage)
+      const url = `/login?origin=${data.origin}&nextPath=${query.nextPath || ''}&error=${em}`
       response.writeHead(302, { Location: url })
       response.end()
     }
