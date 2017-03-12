@@ -11,7 +11,7 @@
   },
   "main": "index.js",
   "engines": {
-    "node": ">=7.6.0"
+    "node": ">=7.7.2"
   },
   "scripts": {
     "test": "standard && nsp check && ava",
@@ -27,7 +27,9 @@
   "keywords": [
     "microservice",
     "micro",
-    "echo"
+    "ldap",
+    "auth",
+    "Telemark fylkeskommune"
   ],
   "repository": {
     "type": "git",
@@ -36,10 +38,12 @@
   "bugs": {
     "url": "https://github.com/telemark/micro-auth-ldap/issues"
   },
+  "homepage": "https://github.com/telemark/micro-auth-ldap",
   "now": {
     "alias": [
       "ldap.auth.mikrotjeneste.win"
     ],
+    "type": "npm",
     "env": {
       "NODE_ENV": "production"
     }
