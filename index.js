@@ -17,12 +17,22 @@ module.exports = async (request, response) => {
   const {pathname, query} = await parse(request.url, true)
   if (pathname === '/auth') {
     const data = request.method === 'POST' ? await bodyParser(request) : query
-    const result = await loginUser(data)
-    const session = await saveSession(result)
-    const jwt = generateJwt(Object.assign({sessionKey: session}, result))
-    const url = `${data.origin}?jwt=${jwt}`
-    response.writeHead(302, { Location: url })
-    response.end()
+    try {
+      const result = await loginUser(data)
+      result.nextPath = query.nextPath || ''
+      const session = await saveSession(result)
+      const jwt = generateJwt(Object.assign({sessionKey: session}, result))
+      const url = `${data.origin}?jwt=${jwt}`
+      response.writeHead(302, { Location: url })
+      response.end()
+    } catch (error) {
+      console.log(error)
+      const errorMessage = typeof error === 'string' ? error : error.message || 'Unknown error'
+      const em = /80090308/.test(errorMessage) ? 'Ugyldig brukernavn eller passord' : encodeURIComponent(errorMessage)
+      const url = `/login?origin=${data.origin}&nextPath=${query.nextPath || ''}&error=${em}`
+      response.writeHead(302, { Location: url })
+      response.end()
+    }
   } else if (query.jwt) {
     const receivedToken = query.jwt
     jwt.verify(receivedToken, config.JWT_SECRET, async (error, data) => {
@@ -30,6 +40,7 @@ module.exports = async (request, response) => {
         send(response, 500, error)
       } else {
         const result = await lookupUser(data)
+        result.nextPath = query.nextPath || ''
         const session = await saveSession(result)
         const jwt = generateJwt(Object.assign({sessionKey: session}, result))
         const url = `${data.origin}?jwt=${jwt}`

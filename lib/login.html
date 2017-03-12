@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- load MUI -->
     <link href="https://cdn.muicss.com/mui-0.9.9/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
     <script src="https://cdn.muicss.com/mui-0.9.9/js/mui.min.js"></script>
     <title>Pålogging</title>
 </head>
@@ -14,7 +15,10 @@
     <div class="mui-panel mui-text-center login">
         <form action="/auth" method="POST" enctype="application/x-www-form-urlencoded" class="mui-form">
             <input type="hidden" name="origin" value="{{origin}}"/>
+            <input type="hidden" name="nextPath" value="{{nextPath}}"/>
             <img src="https://www.telemark.no/bundles/tfktelemark/images/logo/logo.svg" alt="Telemark fylkeskommune logo">
+            <h5>Logg inn</h5>
+            <p class="desc">Telemark fylkeskommune</p>
             <div class="mui-textfield">
             <input type="text" name="username" required autofocus>
                 <label>Brukernavn</label>
@@ -23,6 +27,7 @@
             <input type="password" name="password" required>
                 <label>Passord</label>
             </div>
+            <span class="error">{{error}}</span>
             <button type="submit" class="mui-btn mui-btn--raised">Logg inn</button>
         </form>
     </div>
@@ -30,7 +35,7 @@
 
 <style>
     body {
-        font-family: "Georgia", "Times", "Times New Roman", serif !important;
+        font-family: "Roboto", "Georgia", "Times", "Times New Roman", serif !important;
         background: #ffd520;
         color: #000;
     }
@@ -44,6 +49,10 @@
         background: #ffd520;
         color: black;
     }
+    h5 {
+      font-size: 2.4rem;
+      font-weight: 400;
+    }
     .wrapper {
         margin-top: 4em;
         display: flex;
@@ -54,12 +63,18 @@
     .login {
         width: 350px;
     }
-
+    .desc {
+      color: #757575;
+      padding-bottom: 15px;
+    }
     .mui-textfield>input:focus, .mui-textfield>textarea:focus {
         border-color: #6ac4ae;
     }
     .mui-textfield>input:focus~label, .mui-textfield>textarea:focus~label {
         color: #6ac4ae;
+    }
+    .error {
+      color: red
     }
 </style>
 </body>
