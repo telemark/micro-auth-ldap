@@ -13,23 +13,30 @@ const saveSession = require('./lib/save-session')
 const loginUser = require('./lib/login-user')
 const generateJwt = require('./lib/generate-jwt')
 
+function addNextPath (data) {
+  let nextPath = ''
+  if (data.nextPath && data.nextPath.length > 0) {
+    nextPath = `&nextPath=${data.nextPath}`
+  }
+  return nextPath
+}
+
 module.exports = async (request, response) => {
   const {pathname, query} = await parse(request.url, true)
   if (pathname === '/auth') {
     const data = request.method === 'POST' ? await bodyParser(request) : query
     try {
       const result = await loginUser(data)
-      result.nextPath = query.nextPath || ''
       const session = await saveSession(result)
       const jwt = generateJwt(Object.assign({sessionKey: session}, result))
-      const url = `${data.origin}?jwt=${jwt}`
+      const url = `${data.origin}?jwt=${jwt}${addNextPath(data)}`
       response.writeHead(302, { Location: url })
       response.end()
     } catch (error) {
-      console.log(error)
+      console.error(error)
       const errorMessage = typeof error === 'string' ? error : error.message || 'Unknown error'
       const em = /80090308/.test(errorMessage) ? 'Ugyldig brukernavn eller passord' : encodeURIComponent(errorMessage)
-      const url = `/login?origin=${data.origin}&nextPath=${query.nextPath || ''}&error=${em}`
+      const url = `/login?origin=${data.origin}${addNextPath(data)}&error=${em}`
       response.writeHead(302, { Location: url })
       response.end()
     }
@@ -40,10 +47,9 @@ module.exports = async (request, response) => {
         send(response, 500, error)
       } else {
         const result = await lookupUser(data)
-        result.nextPath = query.nextPath || ''
         const session = await saveSession(result)
         const jwt = generateJwt(Object.assign({sessionKey: session}, result))
-        const url = `${data.origin}?jwt=${jwt}`
+        const url = `${data.origin}?jwt=${jwt}${addNextPath(query)}`
         response.writeHead(302, { Location: url })
         response.end()
       }
