@@ -1,7 +1,7 @@
 {
   "name": "micro-auth-ldap",
   "description": "ldap auth microservice",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "license": "MIT",
   "private": true,
   "author": {
@@ -9,9 +9,16 @@
     "email": "geir.gasodden@pythonia.no",
     "url": "https://github.com/zrrrzzt"
   },
+  "contributors": [
+    {
+      "name": "Jonas Enge",
+      "email": "jonas.enge@gmail.com",
+      "url": "https://github.com/maccyber"
+    }
+  ],
   "main": "index.js",
   "engines": {
-    "node": ">=7.7.2"
+    "node": ">=7.7.3"
   },
   "scripts": {
     "test": "standard && nsp check && ava",
@@ -20,8 +27,7 @@
     "coveralls": "nyc ava && nyc report --reporter=lcov && cat coverage/lcov.info | coveralls",
     "setup": "npm install",
     "standard-fix": "standard --fix",
-    "start": "micro -p 8080",
-    "dev": "micro",
+    "start": "micro",
     "now-deploy": "npm test && now --npm && now alias"
   },
   "keywords": [

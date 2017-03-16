@@ -44,14 +44,20 @@ module.exports = async (request, response) => {
     const receivedToken = query.jwt
     jwt.verify(receivedToken, config.JWT_SECRET, async (error, data) => {
       if (error) {
+        console.error(error)
         send(response, 500, error)
       } else {
-        const result = await lookupUser(data)
-        const session = await saveSession(result)
-        const jwt = generateJwt(Object.assign({sessionKey: session}, result))
-        const url = `${data.origin}?jwt=${jwt}${addNextPath(query)}`
-        response.writeHead(302, { Location: url })
-        response.end()
+        try {
+          const result = await lookupUser(data)
+          const session = await saveSession(result)
+          const jwt = generateJwt(Object.assign({sessionKey: session}, result))
+          const url = `${data.origin}?jwt=${jwt}${addNextPath(query)}`
+          response.writeHead(302, { Location: url })
+          response.end()
+        } catch (error) {
+          console.error(error)
+          send(response, 500, error)
+        }
       }
     })
   } else if (pathname === '/login') {
