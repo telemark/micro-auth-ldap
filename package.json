@@ -68,7 +68,7 @@
     "ldap-get-user": "1.0.9",
     "ldapauth-fork": "3.0.0",
     "marked": "0.3.6",
-    "micro": "7.1.0",
+    "micro": "7.2.1",
     "simple-encryptor": "1.1.0",
     "urlencoded-body-parser": "2.0.0"
   }
