@@ -12,6 +12,7 @@ const lookupUser = require('./lib/lookup-user')
 const saveSession = require('./lib/save-session')
 const loginUser = require('./lib/login-user')
 const generateJwt = require('./lib/generate-jwt')
+const logger = require('./lib/logger')
 
 function addNextPath (data) {
   let nextPath = ''
@@ -33,7 +34,7 @@ module.exports = async (request, response) => {
       response.writeHead(302, { Location: url })
       response.end()
     } catch (error) {
-      console.error(error)
+      logger(['index', 'auth', 'error', error])
       const errorMessage = typeof error === 'string' ? error : error.message || 'Unknown error'
       const em = /80090308/.test(errorMessage) ? 'Ugyldig brukernavn eller passord' : encodeURIComponent(errorMessage)
       const url = `/login?origin=${data.origin}${addNextPath(data)}&error=${em}`
@@ -44,7 +45,7 @@ module.exports = async (request, response) => {
     const receivedToken = query.jwt
     jwt.verify(receivedToken, config.JWT_SECRET, async (error, data) => {
       if (error) {
-        console.error(error)
+        logger(['index', 'jwt', 'error', error])
         send(response, 500, error)
       } else {
         try {
@@ -55,7 +56,7 @@ module.exports = async (request, response) => {
           response.writeHead(302, { Location: url })
           response.end()
         } catch (error) {
-          console.error(error)
+          logger(['index', 'jwt', 'lookup-and-save', 'error', error])
           send(response, 500, error)
         }
       }
@@ -66,6 +67,7 @@ module.exports = async (request, response) => {
       response.setHeader('Content-Type', 'text/html')
       send(response, 200, loginPage(data))
     } else {
+      logger(['index', 'login', 'error', 'missing origin'])
       send(response, 500, {error: 'missing required param: origin'})
     }
   } else {
