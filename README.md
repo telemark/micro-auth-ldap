@@ -28,13 +28,18 @@ LDAP_SEARCH_FILTER=(uid={{username}})
 
 ### POST ```/auth```
 
--post username, password and origin
+- post username, password and origin
 - successful auth redirects to ```origin?jwt=<jwt>```
 
 ### GET ```/?jwt=<jwt>```
 
 - jwt needs userName and origin
 - successful lookup of user redirects to ```origin?jwt=<jwt>```
+
+### GET ```/lookup```
+
+- jwt needs userName
+- successful lookup of user returns data
 
 ## License
 
