@@ -6,6 +6,7 @@ const marked = require('marked')
 const { parse } = require('url')
 const { json, send } = require('micro')
 const config = require('./config')
+const encryptor = require('simple-encryptor')(config.ENCRYPTOR_SECRET)
 const bodyParser = require('urlencoded-body-parser')
 const loginPage = require('./lib/render-login-page')
 const lookupUser = require('./lib/lookup-user')
@@ -42,15 +43,19 @@ module.exports = async (request, response) => {
       response.end()
     }
   } else if (pathname === '/lookup') {
+    logger(['index', 'lookup', 'start'])
     const receivedToken = query.jwt || request.headers.authorization
     if (receivedToken) {
-      jwt.verify(receivedToken, config.JWT_SECRET, async (error, data) => {
+      logger(['index', 'lookup', 'got token'])
+      jwt.verify(receivedToken, config.JWT_SECRET, async (error, decoded) => {
         if (error) {
           logger(['index', 'lookup', 'error', error])
           send(response, 500, error)
         } else {
           try {
-            const result = await lookupUser(data)
+            logger(['index', 'lookup', 'token ok'])
+            const decrypted = encryptor.decrypt(decoded.data)
+            const result = await lookupUser(decrypted)
             logger(['index', 'lookup', 'user found', 'success'])
             send(response, 200, result)
           } catch (error) {
