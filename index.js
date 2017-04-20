@@ -57,7 +57,7 @@ module.exports = async (request, response) => {
             const decrypted = encryptor.decrypt(decoded.data)
             const result = await lookupUser(decrypted)
             logger(['index', 'lookup', 'user found', 'success'])
-            send(response, 200, result)
+            send(response, 200, {data: encryptor.encrypt(result)})
           } catch (error) {
             logger(['index', 'jwt', 'lookup', 'error', error])
             send(response, 500, error)
