@@ -29,5 +29,8 @@ module.exports = {
     searchBase: process.env.LDAP_SEARCH_BASE || 'dc=example,dc=com',
     searchFilter: process.env.LDAP_SEARCH_FILTER || '(uid={{username}})',
     tlsOptions: ldapTlsSettings()
-  }
+  },
+  PAPERTRAIL_HOSTNAME: process.env.PAPERTRAIL_HOSTNAME || 'auth-service-ldap',
+  PAPERTRAIL_HOST: process.env.PAPERTRAIL_HOST || 'logs.papertrailapp.com',
+  PAPERTRAIL_PORT: process.env.PAPERTRAIL_PORT || 12345
 }

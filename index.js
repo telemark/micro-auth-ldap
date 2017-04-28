@@ -35,7 +35,7 @@ module.exports = async (request, response) => {
       response.writeHead(302, { Location: url })
       response.end()
     } catch (error) {
-      logger(['index', 'auth', 'error', error])
+      logger('error', ['index', 'auth', error])
       const errorMessage = typeof error === 'string' ? error : error.message || 'Unknown error'
       const em = /80090308/.test(errorMessage) ? 'Ugyldig brukernavn eller passord' : encodeURIComponent(errorMessage)
       const url = `/login?origin=${data.origin}${addNextPath(data)}&error=${em}`
@@ -43,36 +43,37 @@ module.exports = async (request, response) => {
       response.end()
     }
   } else if (pathname === '/lookup') {
-    logger(['index', 'lookup', 'start'])
+    logger('info', ['index', 'lookup', 'start'])
     const receivedToken = query.jwt || request.headers.authorization
     if (receivedToken) {
-      logger(['index', 'lookup', 'got token'])
+      logger('info', ['index', 'lookup', 'got token'])
       jwt.verify(receivedToken, config.JWT_SECRET, async (error, decoded) => {
         if (error) {
-          logger(['index', 'lookup', 'error', error])
+          logger('error', ['index', 'lookup', error])
           send(response, 500, error)
         } else {
           try {
-            logger(['index', 'lookup', 'token ok'])
+            logger('info', ['index', 'lookup', 'token ok'])
             const decrypted = encryptor.decrypt(decoded.data)
             const result = await lookupUser(decrypted)
-            logger(['index', 'lookup', 'user found', 'success'])
+            logger('info', ['index', 'lookup', 'user found', 'success'])
             send(response, 200, {data: encryptor.encrypt(result)})
           } catch (error) {
-            logger(['index', 'jwt', 'lookup', 'error', error])
+            logger('error', ['index', 'jwt', 'lookup', 'error', error])
             send(response, 500, error)
           }
         }
       })
     } else {
-      logger(['index', 'lookup', 'missing jwt', 'error'])
+      logger('error', ['index', 'lookup', 'missing jwt', 'error'])
       send(response, 500, new Error('missing jwt'))
     }
   } else if (query.jwt) {
+    logger('info', ['index', 'jwt', 'received jwt'])
     const receivedToken = query.jwt
     jwt.verify(receivedToken, config.JWT_SECRET, async (error, data) => {
       if (error) {
-        logger(['index', 'jwt', 'error', error])
+        logger('error', ['index', 'jwt', 'error', error])
         send(response, 500, error)
       } else {
         try {
@@ -80,10 +81,11 @@ module.exports = async (request, response) => {
           const session = await saveSession(result)
           const jwt = generateJwt(Object.assign({sessionKey: session}, result))
           const url = `${data.origin}?jwt=${jwt}${addNextPath(query)}`
+          logger('info', ['index', 'jwt', 'success'])
           response.writeHead(302, { Location: url })
           response.end()
         } catch (error) {
-          logger(['index', 'jwt', 'lookup-and-save', 'error', error])
+          logger('error', ['index', 'jwt', 'lookup-and-save', error])
           send(response, 500, error)
         }
       }
@@ -91,10 +93,11 @@ module.exports = async (request, response) => {
   } else if (pathname === '/login') {
     const data = request.method === 'POST' ? await json(request) : query
     if (data.origin) {
+      logger('info', ['index', 'login', 'origin', data.origin])
       response.setHeader('Content-Type', 'text/html')
       send(response, 200, loginPage(data))
     } else {
-      logger(['index', 'login', 'error', 'missing origin'])
+      logger('error', ['index', 'login', 'missing origin'])
       send(response, 500, {error: 'missing required param: origin'})
     }
   } else {
