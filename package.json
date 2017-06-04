@@ -1,7 +1,7 @@
 {
   "name": "micro-auth-ldap",
   "description": "ldap auth microservice",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "license": "MIT",
   "private": true,
   "author": {
