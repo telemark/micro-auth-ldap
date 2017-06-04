@@ -62,7 +62,7 @@
     "test-listen": "1.0.2"
   },
   "dependencies": {
-    "axios": "0.16.1",
+    "axios": "0.16.2",
     "jsonwebtoken": "7.4.0",
     "ldap-get-user": "1.0.9",
     "ldapauth-fork": "4.0.0",
