@@ -1,7 +1,7 @@
 {
   "name": "micro-auth-ldap",
   "description": "ldap auth microservice",
-  "version": "1.4.13",
+  "version": "1.4.14",
   "license": "MIT",
   "private": true,
   "author": {
@@ -56,7 +56,7 @@
   "devDependencies": {
     "ava": "0.19.1",
     "coveralls": "2.13.0",
-    "nsp": "2.7.0",
+    "nsp": "2.6.3",
     "nyc": "11.1.0",
     "standard": "10.0.2",
     "test-listen": "1.0.2"
