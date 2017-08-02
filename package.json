@@ -1,7 +1,7 @@
 {
   "name": "micro-auth-ldap",
   "description": "ldap auth microservice",
-  "version": "1.4.10",
+  "version": "1.4.13",
   "license": "MIT",
   "private": true,
   "author": {
@@ -57,7 +57,7 @@
     "ava": "0.19.1",
     "coveralls": "2.13.0",
     "nsp": "2.7.0",
-    "nyc": "11.0.3",
+    "nyc": "11.1.0",
     "standard": "10.0.2",
     "test-listen": "1.0.2"
   },
@@ -65,9 +65,9 @@
     "axios": "0.16.2",
     "jsonwebtoken": "7.4.0",
     "ldap-get-user": "1.0.9",
-    "ldapauth-fork": "4.0.1",
+    "ldapauth-fork": "4.0.2",
     "marked": "0.3.6",
-    "micro": "7.3.3",
+    "micro": "8.0.0",
     "simple-encryptor": "1.1.0",
     "urlencoded-body-parser": "2.0.1",
     "winston": "2.3.1",
