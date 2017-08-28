@@ -19,12 +19,22 @@ LDAP_SEARCH_BASE=dc=example,dc=com
 LDAP_SEARCH_FILTER=(uid={{username}})
 ```
 
+Optional
+
+```
+REDIRECT_LOGOUT_URL=<url to redirect to after logout>
+```
+
 ## API
 
 ### GET ```/login?origin=<url for redirect>```
 
 - returns loginform
 - successful login redirects to ```origin?jwt=<jwt>```
+
+### GET ```/logout?origin=<url for redirect>```
+
+- redirects to ```origin```
 
 ### POST ```/auth```
 

@@ -1,7 +1,7 @@
 {
   "name": "micro-auth-ldap",
   "description": "ldap auth microservice",
-  "version": "1.4.17",
+  "version": "1.5.0",
   "license": "MIT",
   "private": true,
   "author": {
@@ -18,7 +18,7 @@
   ],
   "main": "index.js",
   "engines": {
-    "node": ">=7.9.0"
+    "node": ">=8.4.0"
   },
   "scripts": {
     "test": "standard && nsp check && ava",
@@ -26,6 +26,7 @@
     "coverage": "nyc ava",
     "coveralls": "nyc ava && nyc report --reporter=lcov && cat coverage/lcov.info | coveralls",
     "standard-fix": "standard --fix",
+    "dev": "micro-dev",
     "start": "micro",
     "now-deploy": "npm test && now --npm && now alias"
   },
@@ -54,9 +55,10 @@
     }
   },
   "devDependencies": {
-    "ava": "0.19.1",
-    "coveralls": "2.13.0",
-    "nsp": "2.6.3",
+    "ava": "0.22.0",
+    "coveralls": "2.13.1",
+    "micro-dev": "1.2.2",
+    "nsp": "2.7.0",
     "nyc": "11.1.0",
     "standard": "10.0.3",
     "test-listen": "1.0.2"

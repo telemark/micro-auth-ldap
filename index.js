@@ -100,6 +100,20 @@ module.exports = async (request, response) => {
       logger('error', ['index', 'login', 'missing origin'])
       send(response, 500, {error: 'missing required param: origin'})
     }
+  } else if (pathname === '/logout') {
+    const data = request.method === 'POST' ? await json(request) : query
+    if (data.origin) {
+      logger('info', ['index', 'logout', 'origin', data.origin])
+      response.writeHead(302, { Location: data.origin })
+      response.end()
+    } else if (process.env.REDIRECT_LOGOUT_URL) {
+      logger('info', ['index', 'logout', 'redirUrl', process.env.REDIRECT_LOGOUT_URL])
+      response.writeHead(302, { Location: process.env.REDIRECT_LOGOUT_URL })
+      response.end()
+    } else {
+      logger('info', ['index', 'logout', 'missing origin', 'missing redirUrl'])
+      send(response, 200, {logout: true})
+    }
   } else {
     response.setHeader('Content-Type', 'text/html')
     const readme = readFileSync('./README.md', 'utf-8')
