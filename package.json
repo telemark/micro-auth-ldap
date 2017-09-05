@@ -59,7 +59,7 @@
     "coveralls": "2.13.1",
     "micro-dev": "1.2.2",
     "nsp": "2.7.0",
-    "nyc": "11.1.0",
+    "nyc": "11.2.0",
     "standard": "10.0.3",
     "test-listen": "1.0.2"
   },
