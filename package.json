@@ -58,7 +58,7 @@
     "ava": "0.22.0",
     "coveralls": "3.0.0",
     "nsp": "3.1.0",
-    "micro-dev": "1.4.0",
+    "micro-dev": "2.1.0",
     "nyc": "11.3.0",
     "standard": "10.0.3",
     "test-listen": "1.0.2"
