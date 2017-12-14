@@ -61,7 +61,7 @@
     "micro-dev": "2.1.0",
     "nyc": "11.3.0",
     "standard": "10.0.3",
-    "test-listen": "1.0.2"
+    "test-listen": "1.1.0"
   },
   "dependencies": {
     "axios": "0.17.1",
