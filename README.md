@@ -55,4 +55,4 @@ REDIRECT_LOGOUT_URL=<url to redirect to after logout>
 
 [MIT](LICENSE)
 
-![alt text](https://robots.kebabstudios.party/micro-auth-ldap.png "Robohash image of micro-auth-ldap")
+![Robohash image of micro-auth-ldap](https://robots.kebabstudios.party/micro-auth-ldap.png "Robohash image of micro-auth-ldap")

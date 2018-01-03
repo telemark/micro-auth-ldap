@@ -18,7 +18,7 @@
   ],
   "main": "index.js",
   "engines": {
-    "node": ">=8.4.0"
+    "node": ">=8.9.3"
   },
   "scripts": {
     "test": "standard && nsp check && ava",
@@ -28,7 +28,7 @@
     "standard-fix": "standard --fix",
     "dev": "micro-dev",
     "start": "micro",
-    "now-deploy": "npm test && now --npm && now alias"
+    "deploy": "npm test && now --npm && now alias"
   },
   "keywords": [
     "microservice",
@@ -39,12 +39,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/telemark/micro-auth-ldap.git"
+    "url": "git+https://github.com/telemark/micro-auth-ldap.git"
   },
   "bugs": {
     "url": "https://github.com/telemark/micro-auth-ldap/issues"
   },
-  "homepage": "https://github.com/telemark/micro-auth-ldap",
+  "homepage": "https://github.com/telemark/micro-auth-ldap#readme",
   "now": {
     "alias": [
       "ldap.auth.mikrotjeneste.win"
@@ -52,10 +52,13 @@
     "type": "npm",
     "env": {
       "NODE_ENV": "production"
+    },
+    "engines": {
+      "node": "8.9.3"
     }
   },
   "devDependencies": {
-    "ava": "0.22.0",
+    "ava": "0.24.0",
     "coveralls": "3.0.0",
     "nsp": "3.1.0",
     "micro-dev": "2.1.1",
@@ -72,7 +75,7 @@
     "micro": "9.0.2",
     "simple-encryptor": "1.1.1",
     "urlencoded-body-parser": "2.0.1",
-    "winston": "3.0.0-rc0",
+    "winston": "2.4.0",
     "winston-papertrail": "1.0.5"
   }
 }
