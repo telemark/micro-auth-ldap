@@ -1,5 +1,3 @@
-'use strict'
-
 const readFileSync = require('fs').readFileSync
 const jwt = require('jsonwebtoken')
 const marked = require('marked')
