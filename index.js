@@ -22,13 +22,13 @@ function addNextPath (data) {
 }
 
 module.exports = async (request, response) => {
-  const {pathname, query} = await parse(request.url, true)
+  const { pathname, query } = await parse(request.url, true)
   if (pathname === '/auth') {
     const data = request.method === 'POST' ? await bodyParser(request) : query
     try {
       const result = await loginUser(data)
       const session = await saveSession(result)
-      const jwt = generateJwt(Object.assign({sessionKey: session}, result))
+      const jwt = generateJwt(Object.assign({ sessionKey: session }, result))
       const url = `${data.origin}?jwt=${jwt}${addNextPath(data)}`
       response.writeHead(302, { Location: url })
       response.end()
@@ -55,7 +55,7 @@ module.exports = async (request, response) => {
             const decrypted = encryptor.decrypt(decoded.data)
             const result = await lookupUser(decrypted)
             logger('info', ['index', 'lookup', 'user found', 'success'])
-            send(response, 200, {data: encryptor.encrypt(result)})
+            send(response, 200, { data: encryptor.encrypt(result) })
           } catch (error) {
             logger('error', ['index', 'jwt', 'lookup', 'error', error])
             send(response, 500, error)
@@ -77,7 +77,7 @@ module.exports = async (request, response) => {
         try {
           const result = await lookupUser(data)
           const session = await saveSession(result)
-          const jwt = generateJwt(Object.assign({sessionKey: session}, result))
+          const jwt = generateJwt(Object.assign({ sessionKey: session }, result))
           const url = `${data.origin}?jwt=${jwt}${addNextPath(query)}`
           logger('info', ['index', 'jwt', 'success'])
           response.writeHead(302, { Location: url })
@@ -96,7 +96,7 @@ module.exports = async (request, response) => {
       send(response, 200, loginPage(data))
     } else {
       logger('error', ['index', 'login', 'missing origin'])
-      send(response, 500, {error: 'missing required param: origin'})
+      send(response, 500, { error: 'missing required param: origin' })
     }
   } else if (pathname === '/logout') {
     const data = request.method === 'POST' ? await json(request) : query
@@ -110,7 +110,7 @@ module.exports = async (request, response) => {
       response.end()
     } else {
       logger('info', ['index', 'logout', 'missing origin', 'missing redirUrl'])
-      send(response, 200, {logout: true})
+      send(response, 200, { logout: true })
     }
   } else {
     response.setHeader('Content-Type', 'text/html')
