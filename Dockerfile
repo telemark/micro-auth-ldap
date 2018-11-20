@@ -1,4 +1,3 @@
-# Setting the base to nodejs 8.9.4
 FROM node:8.12.0-alpine
 
 # Bundle app source
