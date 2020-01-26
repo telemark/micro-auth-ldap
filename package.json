@@ -59,7 +59,7 @@
     }
   },
   "devDependencies": {
-    "ava": "3.0.0",
+    "ava": "3.1.0",
     "coveralls": "3.0.9",
     "micro-dev": "3.0.0",
     "nyc": "14.1.1",
