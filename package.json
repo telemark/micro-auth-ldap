@@ -73,7 +73,7 @@
     "ldapauth-fork": "4.2.0",
     "marked": "0.6.2",
     "micro": "9.3.4",
-    "simple-encryptor": "3.0.0",
+    "simple-encryptor": "4.0.0",
     "urlencoded-body-parser": "2.0.1",
     "winston": "2.4.5",
     "winston-papertrail": "1.0.5"
