@@ -70,7 +70,7 @@
     "axios": "0.19.0",
     "jsonwebtoken": "8.5.1",
     "ldap-get-user": "1.0.9",
-    "ldapauth-fork": "4.2.0",
+    "ldapauth-fork": "5.0.5",
     "marked": "0.6.2",
     "micro": "9.3.4",
     "simple-encryptor": "3.0.0",
