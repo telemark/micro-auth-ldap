@@ -1,4 +1,4 @@
-FROM node:8.16.0-alpine
+FROM node:9.11.2-alpine
 
 # Bundle app source
 COPY . /src
